@@ -6,6 +6,9 @@
 
 <script>
 export default {
+  props: {
+    drugs: Array,
+  },
   components: {
   },
   data() {

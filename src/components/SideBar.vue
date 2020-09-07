@@ -12,20 +12,8 @@
         <div class="sales">
           <div v-for="item in drugs"
                class="sales__item">
-            <img :src="'/imgs/' +   item.icon" alt="icon">
+            <img :src=" require('@/assets/imgs/' + item.icon)" alt="icon">
             <span>{{item.soldCount}}</span>
-          </div>
-          <div class="sales__item">
-            <img src="../assets/imgs/sad.svg" alt="icon">
-            <span>1</span>
-          </div>
-          <div class="sales__item">
-            <img src="../assets/imgs/happy.svg" alt="icon">
-            <span>12</span>
-          </div>
-          <div class="sales__item">
-            <img src="../assets/imgs/heart.svg" alt="icon">
-            <span>1</span>
           </div>
         </div>
       </div>
@@ -43,7 +31,9 @@
 
 <script>
 export default {
-  props: ['drugs'],
+  props: {
+    drugs: Array,
+  },
   components: {
   }
 }

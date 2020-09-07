@@ -19,25 +19,22 @@ export default {
     return {
       drugs:  [
         {
-          id: 1,
           name: "cheap",
           color: "#8049C7",
           soldCount: 0,
           icon: 'sad.svg',
         },
         {
-          id: 2,
           name: "brand",
           color: "#169AE4",
           soldCount: 0,
-          icon: '/imgs/happy.svg',
+          icon: 'happy.svg',
         },
         {
-          id: 3,
           name: "brand-2",
           color: "#FFD748",
           soldCount: 0,
-          icon: '/imgs/heart.svg',
+          icon: 'heart.svg',
         },
       ],
     }

@@ -8,7 +8,7 @@ new Vue({
   router,
   render: h => h(App),
   data: {
-    drugs: [],
+    drugs:  [],
     customers: '',
   }
 }).$mount('#app')

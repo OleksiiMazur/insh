@@ -5,10 +5,11 @@
     </div>
     <div class="drugs-list">
       <div class="btn drugs-list__item"
-           v-for="drug in drugs"
-           :key="drug.id"
-           :class="[`drugs-list__item--${drug.id}`]">
-              Препарат {{drug.id}}
+           v-for="(drug, index) in drugs"
+           :key="drug.name"
+           @click="drugBtnClick(index)"
+           :class="[`drugs-list__item--${index + 1}`]">
+              Препарат {{index + 1}}
       </div>
     </div>
   </div>
@@ -27,6 +28,13 @@ export default {
     }
   },
   methods: {
+    drugBtnClick: function (i) {
+      let soldBefore = this.drugs[i].soldCount;
+
+      this.drugs[i].soldCount = soldBefore + 1;
+
+      console.log(this.drugs[i].soldCount);
+    },
   },
   computed: {
 
