@@ -1,21 +1,6 @@
 <template>
-  <div class="home">
-    <div class="welcome bg-gradient">
-      <div class="title-group">
-        <p class="welcome__pre-title">
-          Добро пожаловать в игру
-        </p>
-        <h1 class="welcome__title">
-          Помоги <span>Фармацевту</span>
-        </h1>
-      </div>
-      <a href="#"
-         @click="$emit('changeState', 'Game')"
-         class="btn welcome__btn">
-            Начать
-      </a>
-<!--      <router-link to="/game" class="btn welcome__btn">Начать</router-link>-->
-    </div>
+  <div class="final">
+    <h2>Final page 🥐 </h2>
   </div>
 </template>
 

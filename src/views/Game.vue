@@ -1,7 +1,10 @@
 <template>
   <div class="game">
-    <side-bar :drugs="$data.drugs"></side-bar>
-    <game-field :drugs="$data.drugs"></game-field>
+    <side-bar :drugs="drugs"
+              v-on="$listeners" />
+
+    <game-field :drugs="drugs"
+                v-on="$listeners" />
   </div>
 </template>
 
@@ -10,34 +13,16 @@ import SideBar from "@/components/SideBar"
 import GameField from "@/components/GameField"
 
 export default {
+  props: {
+    drugs: Array,
+  },
   name: 'Game',
   components: {
     SideBar,
     GameField,
   },
   data() {
-    return {
-      drugs:  [
-        {
-          name: "cheap",
-          color: "#8049C7",
-          soldCount: 0,
-          icon: 'sad.svg',
-        },
-        {
-          name: "brand",
-          color: "#169AE4",
-          soldCount: 0,
-          icon: 'happy.svg',
-        },
-        {
-          name: "brand-2",
-          color: "#FFD748",
-          soldCount: 0,
-          icon: 'heart.svg',
-        },
-      ],
-    }
+    return {}
   }
 }
 </script>

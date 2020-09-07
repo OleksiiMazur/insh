@@ -2,7 +2,10 @@
   <div class="sidebar">
     <div class="game-sidebar bg-gradient">
       <div class="game-sidebar__nav">
-        <router-link to="/" class="btn icon-btn icon-btn--home"></router-link>
+<!--        <router-link to="/" class="btn icon-btn icon-btn&#45;&#45;home"></router-link>-->
+        <a href="#" class="btn icon-btn icon-btn--home"
+           @click="$emit('changeState', 'Home')">
+        </a>
         <a href="#" class="btn icon-btn icon-btn--restart"></a>
       </div>
       <div class="game-sidebar__params">

@@ -1,18 +1,59 @@
 <template>
   <div id="app" class="app">
-    <router-view/>
+<!--    <router-view/>-->
+    <home v-if="state === 'Home'"
+          :drugs="$data.drugs"
+          @changeState="changeState" />
+
+    <game v-else-if="state === 'Game'"
+          :drugs="drugs"
+          @changeState="changeState" />
+
+    <final v-else-if="$data.state = 'Final'"
+           @changeState="changeState" />
   </div>
 </template>
 
 <script>
+import Home from "@/views/Home";
+import Game from "@/views/Game";
+import Final from "@/views/Final";
+
 export default {
-  props: {
-    drugs: Array,
-  },
   components: {
+    Game,
+    Home,
+    Final,
   },
   data() {
     return {
+      state: 'Home',
+      drugs: [
+        {
+          name: "cheap",
+          color: "#8049C7",
+          soldCount: 0,
+          icon: 'sad.svg',
+        },
+        {
+          name: "brand",
+          color: "#169AE4",
+          soldCount: 0,
+          icon: 'happy.svg',
+        },
+        {
+          name: "brand-2",
+          color: "#FFD748",
+          soldCount: 0,
+          icon: 'heart.svg',
+        },
+      ],
+    }
+  },
+  methods: {
+    changeState: function (newState) {
+      console.log(newState);
+      this.$data.state = newState;
     }
   }
 }
