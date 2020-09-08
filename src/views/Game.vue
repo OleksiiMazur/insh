@@ -217,6 +217,7 @@ export default {
         }
       }
       .drugs-list {
+        z-index: 3;
         display: flex;
         justify-content: space-between;
         padding: 0 20px 64px 30px;
