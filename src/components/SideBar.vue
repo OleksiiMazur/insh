@@ -1,6 +1,5 @@
 <template>
-  <div class="sidebar">
-    <div class="game-sidebar bg-gradient">
+  <div class="game-sidebar bg-gradient">
       <div class="game-sidebar__nav">
 <!--        <router-link to="/" class="btn icon-btn icon-btn&#45;&#45;home"></router-link>-->
         <a href="javascript:void(0);"
@@ -33,7 +32,6 @@
         </div>
       </div>
     </div>
-  </div>
 </template>
 
 <script>

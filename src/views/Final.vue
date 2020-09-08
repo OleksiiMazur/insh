@@ -1,8 +1,8 @@
 <template>
   <div class="final">
     <div class="final__content">
-      <a href="#" class="btn home-btn bg-gradient"
-         @click="$emit('retry'); $emit('changeState', 'Home'); ">
+      <a href="javascript:void(0)" class="btn home-btn bg-gradient"
+         @click="$emit('retry'); $emit('changeState', 'Home');">
       </a>
 
       <div class="result">
@@ -29,7 +29,7 @@
         </div>
       </div>
 
-      <a href="#" class="btn try-again-btn"
+      <a href="javascript:void(0)" class="btn try-again-btn"
          @click="$emit('changeState', 'Game'); $emit('retry');">
             Попробовать еще
       </a>

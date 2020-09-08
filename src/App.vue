@@ -13,8 +13,7 @@
             :currentCustomer="currentCustomer"
             @changeState="changeState"
             @nextCustomer="nextCustomer"
-            @retry="restartGame"
-            @lastCustomer="changeState" />
+            @retry="restartGame" />
 
       <final v-else-if="state = 'Final'"
              :drugs="drugs"
@@ -99,13 +98,16 @@ export default {
   methods: {
     changeState: function (newState) {
       this.$data.state = newState;
+
+      if(newState === 'Home'){
+        this.$data.currentCustomer = 0;
+        this.$data.drugs.forEach(function (drug) {
+          drug.soldCount = 0;
+        });
+      }
     },
     nextCustomer: function () {
       this.$data.currentCustomer = this.$data.currentCustomer + 1;
-
-      if(this.$data.currentCustomer >= this.$data.customers.length ) {
-        this.$data.currentCustomer = 0;
-      }
     },
     restartGame: function () {
       this.$data.state = 'Game';
@@ -158,10 +160,10 @@ export default {
 }
 
 .state-transition-enter-active {
-  transition: opacity 1.2s ease-in;
+  transition: opacity 0.8s ease-in;
 }
 .state-transition-leave-active {
-  transition: opacity 0.7s ease-out;
+  transition: opacity 0.5s ease-out;
 }
 .state-transition-enter,
 .state-transition-leave-to {
@@ -173,6 +175,7 @@ body, html {
   font-size: 28px;
   line-height: 1em;
   height: 100%;
+  -webkit-tap-highlight-color:  rgba(255, 255, 255, 0);
 }
 body {
   min-height: 100vh;
@@ -211,6 +214,11 @@ strong, b {
   line-height: 90px;
   text-decoration: none;
   color: inherit;
+  transition: transform 0.1s ease;
+
+  &:active {
+    transform: scale(0.98) translateY(2%);
+  }
 }
 
 .bg-gradient {

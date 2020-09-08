@@ -3,9 +3,7 @@ import App from './App.vue'
 // import router from './router'
 import Vue2TouchEvents from 'vue2-touch-events'
 
-Vue.use(Vue2TouchEvents, {
-  tapTolerance: 40,
-});
+Vue.use(Vue2TouchEvents);
 
 Vue.config.productionTip = false
 

@@ -44,6 +44,8 @@ export default {
     background-color: #fff;
 
     &-sidebar {
+      position: relative;
+      z-index: 10;
       height: 100%;
       display: flex;
       flex-direction: column;
