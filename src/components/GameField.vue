@@ -8,7 +8,7 @@
             v-touch:swipe="swipe"
             v-touch-options="{
               touchClass: 'swiping',
-              swipeTolerance: 500,
+              swipeTolerance: 300,
             }"
       />
     </div>
@@ -77,13 +77,11 @@ export default {
 
       this.chosenDrug.color = this.drugs[i].color;
       this.chosenDrug.num = i + 1;
+      this.drugs[i].soldCount = this.drugs[i].soldCount + 1;
 
       if (this.currentCustomer < customersLength - 1) {
         setTimeout(() => this.$emit('nextCustomer'), animDur);
         setTimeout(cardAppearance,animDur);
-      }
-      if (notLastCustomer) {
-        this.drugs[i].soldCount = this.drugs[i].soldCount + 1;
       }
       if (this.currentCustomer === customersLength - 1) {
         setTimeout(() => this.$emit('changeState', 'Final'), animDur);

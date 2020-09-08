@@ -194,4 +194,33 @@ export default {
     }
   }
 }
+
+
+
+@media screen and (max-width: 1200px) {
+  .app {
+    .final {
+      &__content {
+        .home-btn {
+          margin-top: 50px;
+          margin-left: 30px;
+        }
+        .result {
+          margin-top: 90px;
+          margin-left: 30px;
+
+          &__nums {
+            padding-bottom: 20px;
+          }
+          &__text {
+            width: 130%;
+          }
+        }
+        .try-again-btn {
+          margin: auto 0 54px 30px;
+        }
+      }
+    }
+  }
+}
 </style>

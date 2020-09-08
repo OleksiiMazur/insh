@@ -103,4 +103,15 @@ export default {
     }
   }
 }
+
+@media screen and (max-width: 1200px) {
+  .app {
+    .home {
+      .welcome {
+        padding-top: 280px;
+        margin-left: -90px;
+      }
+    }
+  }
+}
 </style>

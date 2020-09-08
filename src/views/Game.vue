@@ -45,6 +45,7 @@ export default {
 
     &-sidebar {
       position: relative;
+      background: #fff;
       z-index: 10;
       height: 100%;
       display: flex;
@@ -112,7 +113,7 @@ export default {
           display: flex;
           justify-content: center;
           flex-wrap: wrap;
-          width: 400px;
+          max-width: 400px;
 
           &__item {
             display: flex;
@@ -186,6 +187,7 @@ export default {
           0 4px 4px rgba(127, 127, 127, 0.25);
 
           &__img {
+            position: relative;
             display: block;
             width: 100%;
             height: 350px;
@@ -196,6 +198,13 @@ export default {
             &:before {
               z-index: 1;
               opacity: 0.2;
+            }
+            img {
+              max-width: 100%;
+              position: absolute;
+              top: 50%;
+              left: 50%;
+              transform: translate(-50%, -50%);
             }
           }
           &__info {
@@ -237,6 +246,90 @@ export default {
           }
           &--3 {
             @include linear-gradient(90deg, #FFD748, 0%, #CACA19, 100%);}
+        }
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1200px) {
+  .app {
+    .game {
+      &-sidebar {
+        &__nav {
+          margin-left: 30px;
+        }
+        &__params {
+          margin-left: 30px;
+          margin-top: 13vh;
+
+          .title {
+            font-size: 30px;
+          }
+          .sales {
+            display: block;
+
+            &__item {
+              line-height: 70px;
+              height: 70px;
+              width: 80%;
+              margin-right: 0;
+              max-width: 200px;
+
+              &:not(:last-child) {
+                margin-bottom: 15px;
+              }
+              span {
+                line-height: 50px;
+              }
+            }
+          }
+        }
+        &__turn {
+          font-size: 23px;
+        }
+      }
+      &-field {
+        &__card-place {
+          .customer {
+            width: 470px;
+            height: auto;
+            min-height: 510px;
+
+            &__img {
+              overflow: hidden;
+              height: 260px;
+
+              img {
+                max-width: 100%;
+              }
+            }
+            &__info {
+              padding: 15px 20px;
+            }
+            &__name {
+              font-size: 28px;
+              line-height: 2em;
+            }
+            &__text {
+              font-size: 21px;
+            }
+            &__stamp {
+              font-size: 38px;
+              line-height: 78px;
+              border-width: 6px;
+            }
+          }
+        }
+        .drugs-list {
+          padding: 0 40px 34px 20px;
+
+          &__item {
+            height: 70px;
+            line-height: 70px;
+            font-size: 20px;
+            width: calc((100% - 40px) / 3);
+          }
         }
       }
     }
