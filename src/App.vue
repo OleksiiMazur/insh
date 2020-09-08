@@ -1,16 +1,28 @@
 <template>
-  <div id="app" class="app">
+  <div id="app" class="app bg-gradient">
 <!--    <router-view/>-->
-    <home v-if="state === 'Home'"
-          :drugs="$data.drugs"
-          @changeState="changeState" />
+    <transition name="state-transition" mode="out-in">
+      <home v-if="state === 'Home'"
+            :drugs="drugs"
+            @changeState="changeState" />
 
-    <game v-else-if="state === 'Game'"
-          :drugs="drugs"
-          @changeState="changeState" />
+      <game v-else-if="state === 'Game'"
+            :drugs="drugs"
+            :state="state"
+            :customers="customers"
+            :currentCustomer="currentCustomer"
+            @changeState="changeState"
+            @nextCustomer="nextCustomer"
+            @retry="restartGame"
+            @lastCustomer="changeState" />
 
-    <final v-else-if="$data.state = 'Final'"
-           @changeState="changeState" />
+      <final v-else-if="state = 'Final'"
+             :drugs="drugs"
+             :state="state"
+             :customers="customers"
+             @retry="restartGame"
+             @changeState="changeState" />
+    </transition>
   </div>
 </template>
 
@@ -20,6 +32,7 @@ import Game from "@/views/Game";
 import Final from "@/views/Final";
 
 export default {
+  name: 'App',
   components: {
     Game,
     Home,
@@ -28,6 +41,7 @@ export default {
   data() {
     return {
       state: 'Home',
+      currentCustomer: 0,
       drugs: [
         {
           name: "cheap",
@@ -48,14 +62,60 @@ export default {
           icon: 'heart.svg',
         },
       ],
+      customers: [
+        {
+          name: "Марія",
+          age: 19,
+          text: 'Бабуся приймає брендовий препарат від болю в суглобах, він допомагає, але занадто дорогий. У Вас є якісний аналог з нижчою ціною? Якщо ні — давайте бренд.',
+          photo: 'cust-1.jpg',
+        },
+        {
+          name: "Степан",
+          age: 61,
+          text: 'Спросоння відсунув гарячий чайник рукою та обпікся. У Вас всі ліки від опіків такі дорогі? Можна хороший препарат недорого?',
+          photo: 'cust-2.jpg',
+        },
+        {
+          name: "Любов",
+          age: 58,
+          text: 'Лікар призначив препарат від артеріальної гіпертензії, а бренд дорого коштує. Тому мені потрібен аналог з хорошою ефективністю та приємною ціною',
+          photo: 'cust-3.jpg',
+        },
+        {
+          name: "Олександр",
+          age: 20,
+          text: 'Порекомендуйте ефективний препарат від болю в горлі за розумну ціну.',
+          photo: 'cust-4.jpg',
+        },
+        {
+          name: "Ірина",
+          age: 55,
+          text: 'У мене часто невралгії, лікар призначив вітаміни групи В. Мені потрібен якісний аналог за прийнятною ціною.',
+          photo: 'cust-5.jpg',
+        },
+      ],
     }
   },
   methods: {
     changeState: function (newState) {
-      console.log(newState);
       this.$data.state = newState;
-    }
-  }
+    },
+    nextCustomer: function () {
+      this.$data.currentCustomer = this.$data.currentCustomer + 1;
+
+      if(this.$data.currentCustomer >= this.$data.customers.length ) {
+        this.$data.currentCustomer = 0;
+      }
+    },
+    restartGame: function () {
+      this.$data.state = 'Game';
+
+      this.$data.drugs.forEach(function (drug) {
+        drug.soldCount = 0;
+      });
+      this.$data.currentCustomer = 0;
+    },
+  },
 }
 </script>
 
@@ -97,6 +157,17 @@ export default {
   font-display: swap;
 }
 
+.state-transition-enter-active {
+  transition: opacity 1.2s ease-in;
+}
+.state-transition-leave-active {
+  transition: opacity 0.7s ease-out;
+}
+.state-transition-enter,
+.state-transition-leave-to {
+  opacity: 0;
+}
+
 body, html {
   font-family: "AvenirNextCyr";
   font-size: 28px;
@@ -107,10 +178,24 @@ body {
   min-height: 100vh;
   display: grid;
   grid-template-rows: 1fr;
+
+  &:before {
+    z-index: -20;
+  }
 }
 
+.disabled {
+  pointer-events: none;
+  user-select: none;
+}
 .app {
   height: inherit;
+  overflow: hidden;
+
+  & > div {
+    position: relative;
+    z-index: 5;
+  }
 }
 
 strong, b {

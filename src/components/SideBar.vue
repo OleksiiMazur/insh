@@ -3,10 +3,14 @@
     <div class="game-sidebar bg-gradient">
       <div class="game-sidebar__nav">
 <!--        <router-link to="/" class="btn icon-btn icon-btn&#45;&#45;home"></router-link>-->
-        <a href="#" class="btn icon-btn icon-btn--home"
+        <a href="javascript:void(0);"
+           class="btn icon-btn icon-btn--home"
            @click="$emit('changeState', 'Home')">
         </a>
-        <a href="#" class="btn icon-btn icon-btn--restart"></a>
+        <a href="javascript:void(0);"
+           class="btn icon-btn icon-btn--restart"
+           @click="$emit('retry');">
+        </a>
       </div>
       <div class="game-sidebar__params">
         <div class="title">
@@ -25,7 +29,7 @@
           Осталось в очереди
         </div>
         <div class="nums">
-          <strong>14</strong>/<span>15</span>
+          <strong>{{ currentCustomer + 1 }}</strong>/<span>{{ customers.length }}</span>
         </div>
       </div>
     </div>
@@ -36,8 +40,13 @@
 export default {
   props: {
     drugs: Array,
+    customers: Array,
+    currentCustomer: Number,
   },
-  components: {
+  computed: {
+    customer: function() {
+      return this.customers[this.currentCustomer];
+    }
   }
 }
 </script>
